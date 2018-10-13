@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { AppService } from './app.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { AppService } from './app.service';
 export class AppComponent {
 
   title = 'QuePasaCrack';
-  version = '1.0';
+  version = '1.0.0';
 
   constructor(public service: AppService) {}
 }

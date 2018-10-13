@@ -7,16 +7,23 @@ import { Observable } from 'rxjs';
 })
 export class AppService {
 
+  public enable: boolean;
   public saludos: Array<string>;
-  private data: Array<string>;
+  public data: Array<string>;
+  public delay: number;
 
   constructor(private http: HttpClient) {
-    this.saludos = new Array<string>();
     this.retrieveData().subscribe(
       (data: any) => {
         this.data = data.saludos;
       }
     );
+  }
+
+  public resetGame() {
+    this.enable = false;
+    this.saludos = [];
+    this.delay = 2000;
   }
 
   public addSaludo() {
@@ -25,9 +32,18 @@ export class AppService {
       current = this.getRandom(0, this.data.length);
     } while (Object.values(this.saludos).includes(this.data[current]));
     this.saludos.push(this.data[current]);
+    console.log(this.saludos.length);
   }
 
-  private retrieveData(): Observable<any> {
+  public getDelay() {
+    return this.delay;
+  }
+
+  public setDelay(delay) {
+    this.delay = delay;
+  }
+
+  public retrieveData(): Observable<any> {
     return this.http.get<any>(`../assets/data/saludos.json`);
   }
 

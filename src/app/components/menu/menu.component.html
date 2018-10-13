@@ -1,8 +1,20 @@
 <section class="menu">
 
   <nav class="menu-nav">
-    <button class="btn-menu" routerLink="game">JUGAR</button>
-    <button class="btn-menu" routerLink="help">AYUDA</button>
+    <button
+      class="btn-menu"
+      routerLink="game"
+      (click)="setStage('game')">
+        JUGAR
+    </button>
+
+    <button
+      class="btn-menu"
+      routerLink="help"
+      (click)="setStage('help')"
+      [hidden]="stage == 'help'">
+        AYUDA
+    </button>
   </nav>
 
 </section>

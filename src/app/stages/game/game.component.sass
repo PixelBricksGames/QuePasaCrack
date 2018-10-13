@@ -1,8 +1,94 @@
 @import '../../../assets/styles/theme.sass'
 
 .game
-    
+
+    .game-bubble
+        margin: 0 auto
+        width: 90%
+        .game-bubble-body
+            background-color: $color-bubble-bg
+            border-radius: 20px
+            font-size: 30px
+            padding: 20px 0
+            -webkit-box-shadow: 0px 5px 5px 2px rgba(0,0,0,0.3)
+            -moz-box-shadow: 0px 5px 5px 2px rgba(0,0,0,0.3)
+            box-shadow: 0px 5px 5px 2px rgba(0,0,0,0.3)
+            span 
+                display: block
+                height: 44px
+
+        $game-bubble-triangle-size: 50px
+
+        .game-bubble-triangle
+            border-style: solid
+            height: 0
+            position: relative
+            width: 0
+
+        .game-bubble-left
+            @extend .game-bubble-triangle
+            border-color: $color-bubble-bg transparent transparent transparent
+            border-width: $game-bubble-triangle-size $game-bubble-triangle-size 0 0
+            float: left
+            margin-left: 100px
+
+        .game-bubble-right
+            @extend .game-bubble-triangle
+            border-color: transparent $color-bubble-bg transparent transparent
+            border-width: 0 $game-bubble-triangle-size $game-bubble-triangle-size 0
+            float: right
+            margin-right: 100px
+
+    .game-players
+        padding: 0
+        display: flex
+        align-content: space-between
+        align-items: flex-end
+        width: 100%
+        .game-axel,
+        .game-pablo
+            height: 200px
+            width: 200px
+
+        .game-axel-idle
+            background-image: url('../../../assets/img/axel-idle.gif')
+        .game-axel-talking
+            background-image: url('../../../assets/img/axel-talking.gif')
+
+        .game-pablo-idle
+            background-image: url('../../../assets/img/pablo-idle.gif')
+        .game-pablo-talking
+            background-image: url('../../../assets/img/pablo-talking.gif')
+
+        .game-middle
+            flex-grow: 1
+            padding-bottom: 50px
+            .game-message
+                font-size: 40px
+                line-height: 1
+            .game-score
+                color: $color-app-title
+                font-size: 30px
+                .game-score-answers
+                    &:after
+                        color: $color-app-title
+                        content: ' / '
+                .answer-correct
+                    color: $color-corrent-answer
+                .answer-wrong
+                    color: $color-wrong-answer
+                .answer-neutral
+                    color: $color-app-title
+
+    .hidden
+        display: none
+        visibility: hidden
+    .visible
+        display: block
+        visibility: visible
+
     .game-buttons
+        padding-bottom: 20px
 
         .btn-saludo
             background-color: $color-saludo-bg
@@ -12,7 +98,7 @@
             cursor: pointer
             display: inline-block
             font-family: 'Permanent Marker', cursive
-            font-size: 22px
+            font-size: 18px
             margin: 4px
             padding: 4px 10px
             text-transform: capitalize
@@ -20,3 +106,20 @@
                 background-color: $color-saludo-hover-bg
                 border: 2px solid $color-saludo-hover-border
                 color: $color-saludo-hover-text
+
+    .btn-again
+        background-color: $color-saludo-bg
+        border-radius: 4px
+        border: 2px solid $color-app-sides
+        color: $color-app-sides
+        cursor: pointer
+        display: inline-block
+        font-family: 'Permanent Marker', cursive
+        font-size: 18px
+        margin: 4px
+        padding: 4px 10px
+        text-transform: uppercase
+        &:hover
+            background-color: $color-app-sides
+            border: 2px solid $color-saludo-bg
+            color: $color-saludo-bg

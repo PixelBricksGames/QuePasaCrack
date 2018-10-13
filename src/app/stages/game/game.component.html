@@ -1,9 +1,31 @@
 <section class="game">
 
-  <div clas="game-buttons">
-    <button clas="btn-saludo" *ngFor="let saludo of service.saludos">{{ saludo }}</button>
+  <div class="game-bubble">
+    <div class="game-bubble-body">
+      <span>{{ currentSaludo }}</span>
+    </div>
+    <div class="game-bubble-left" [hidden]="isPlayerTurn"></div>
+    <div class="game-bubble-right" [hidden]="!isPlayerTurn"></div>
+  </div>
+
+  <div class="game-players">
+    <div class="game-axel" [ngClass]="axel"></div>
+    <div class="game-middle">
+      <div class="game-message" [hidden]="!isPlayerTurn">{{ message }}</div>
+      <div class="game-score">
+        <span class="game-score-answers" [ngClass]="answerClass"> {{ rightAnswers }} </span>
+        <span class="game-score-level"> {{ service.saludos.length }} </span>
+      </div>
+    </div>
+    <div class="game-pablo" [ngClass]="pablo"></div>
+  </div>
+  
+  <div class="game-buttons" [ngClass]="buttonsClass">
+    <button class="btn-saludo" *ngFor="let saludo of service.data" (click)="saySaludo(saludo)">{{ saludo }}</button>
+  </div>
+
+  <div [hidden]="!playerLose">
+    <button class="btn-again" (click)="initGame()">VOLVER A JUGAR</button>
   </div>
   
 </section>
-
-<button (click)="service.addSaludo()">Subir 1 nivel</button>

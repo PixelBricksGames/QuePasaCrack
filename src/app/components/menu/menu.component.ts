@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
+  public stage: string;
   constructor() { }
 
   ngOnInit() {
+    this.stage = 'title';
+  }
+
+  public setStage(stage): void {
+    this.stage = stage;
   }
 
 }
