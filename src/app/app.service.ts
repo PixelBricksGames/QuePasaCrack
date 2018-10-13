@@ -32,7 +32,6 @@ export class AppService {
       current = this.getRandom(0, this.data.length);
     } while (Object.values(this.saludos).includes(this.data[current]));
     this.saludos.push(this.data[current]);
-    console.log(this.saludos.length);
   }
 
   public getDelay() {
@@ -44,7 +43,7 @@ export class AppService {
   }
 
   public retrieveData(): Observable<any> {
-    return this.http.get<any>(`../assets/data/saludos.json`);
+    return this.http.get<any>(`http://pixelbricksgames.com/games/quepasacrack/assets/data/saludos.json`);
   }
 
   private getRandom(min: number, max: number): number {

@@ -270,7 +270,7 @@ var AppService = /** @class */ (function () {
         this.delay = delay;
     };
     AppService.prototype.retrieveData = function () {
-        return this.http.get("../assets/data/saludos.json");
+        return this.http.get("http://pixelbricksgames.com/games/quepasacrack/assets/data/saludos.json");
     };
     AppService.prototype.getRandom = function (min, max) {
         return Math.floor(Math.random() * max) + min;

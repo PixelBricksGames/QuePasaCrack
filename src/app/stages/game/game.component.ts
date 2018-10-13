@@ -14,13 +14,11 @@ export class GameComponent implements OnInit {
   public rightAnswers: number;
   public buttonsClass: string;
   public answerClass: string;
-
   public axel: string;
   public pablo: string;
+  public playerLose: boolean;
 
-  private playerLose: boolean;
-
-  constructor(private service: AppService) { }
+  constructor(public service: AppService) { }
 
   ngOnInit() {
     this.axel = 'game-axel-idle';
