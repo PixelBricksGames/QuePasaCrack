@@ -1,9 +1,9 @@
-<section>
-    <p>
-      game works!
-    </p>
-  <nav>
-    <button routerLink="menu">MENU</button>
-    <button routerLink="help">AYUDA</button>
-  </nav>
+<section class="game">
+
+  <div clas="game-buttons">
+    <button clas="btn-saludo" *ngFor="let saludo of service.saludos">{{ saludo }}</button>
+  </div>
+  
 </section>
+
+<button (click)="service.addSaludo()">Subir 1 nivel</button>
