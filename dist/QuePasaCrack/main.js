@@ -132,7 +132,7 @@ var AppComponent = /** @class */ (function () {
     function AppComponent(service) {
         this.service = service;
         this.title = 'QuePasaCrack';
-        this.version = '1.0.0';
+        this.version = '1.0.1';
     }
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -246,6 +246,8 @@ var AppService = /** @class */ (function () {
     function AppService(http) {
         var _this = this;
         this.http = http;
+        this.baseURL = 'http://pixelbricksgames.com/games/quepasacrack/';
+        // this.baseURL = '/';
         this.retrieveData().subscribe(function (data) {
             _this.data = data.saludos;
         });
@@ -261,7 +263,7 @@ var AppService = /** @class */ (function () {
             current = this.getRandom(0, this.data.length);
         } while (Object.values(this.saludos).includes(this.data[current]));
         this.saludos.push(this.data[current]);
-        console.log(this.saludos.length);
+        this.setDelay(this.getDelay() - 15);
     };
     AppService.prototype.getDelay = function () {
         return this.delay;
@@ -270,7 +272,7 @@ var AppService = /** @class */ (function () {
         this.delay = delay;
     };
     AppService.prototype.retrieveData = function () {
-        return this.http.get("http://pixelbricksgames.com/games/quepasacrack/assets/data/saludos.json");
+        return this.http.get(this.baseURL + "assets/data/saludos.json");
     };
     AppService.prototype.getRandom = function (min, max) {
         return Math.floor(Math.random() * max) + min;
@@ -480,8 +482,13 @@ var GameComponent = /** @class */ (function () {
                             this.axel = 'game-axel-idle';
                             this.pablo = 'game-pablo-idle';
                             if (this.playerLose) {
-                                this.message = 'Has perdido!';
+                                this.message = '¡Has perdido!';
                                 this.buttonsClass = 'hidden';
+                            }
+                            else if (this.rightAnswers === this.service.data.length) {
+                                this.message = '¡Has ganado!';
+                                this.buttonsClass = 'hidden';
+                                this.playerLose = true;
                             }
                             else if (this.rightAnswers === this.service.saludos.length) {
                                 this.service.addSaludo();

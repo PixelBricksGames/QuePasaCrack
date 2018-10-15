@@ -9,7 +9,7 @@ import { AppService } from './app.service';
 export class AppComponent {
 
   title = 'QuePasaCrack';
-  version = '1.0.0';
+  version = '1.0.1';
 
   constructor(public service: AppService) {}
 }

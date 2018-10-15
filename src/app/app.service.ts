@@ -12,7 +12,11 @@ export class AppService {
   public data: Array<string>;
   public delay: number;
 
+  private baseURL: string;
+
   constructor(private http: HttpClient) {
+    // this.baseURL = 'http://pixelbricksgames.com/games/quepasacrack/';
+    this.baseURL = '/';
     this.retrieveData().subscribe(
       (data: any) => {
         this.data = data.saludos;
@@ -32,6 +36,7 @@ export class AppService {
       current = this.getRandom(0, this.data.length);
     } while (Object.values(this.saludos).includes(this.data[current]));
     this.saludos.push(this.data[current]);
+    this.setDelay(this.getDelay() - 15);
   }
 
   public getDelay() {
@@ -43,7 +48,7 @@ export class AppService {
   }
 
   public retrieveData(): Observable<any> {
-    return this.http.get<any>(`http://pixelbricksgames.com/games/quepasacrack/assets/data/saludos.json`);
+    return this.http.get<any>(`${this.baseURL}assets/data/saludos.json`);
   }
 
   private getRandom(min: number, max: number): number {

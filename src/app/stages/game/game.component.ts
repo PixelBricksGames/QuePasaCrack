@@ -63,8 +63,12 @@ export class GameComponent implements OnInit {
         this.pablo = 'game-pablo-idle';
 
         if (this.playerLose) {
-          this.message = 'Has perdido!';
+          this.message = '¡Has perdido!';
           this.buttonsClass = 'hidden';
+        } else if (this.rightAnswers === this.service.data.length) {
+          this.message = '¡Has ganado!';
+          this.buttonsClass = 'hidden';
+          this.playerLose = true;
         } else if (this.rightAnswers === this.service.saludos.length) {
           this.service.addSaludo();
           this.jugadaAxel(-1);
